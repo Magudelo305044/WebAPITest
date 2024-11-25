@@ -6,7 +6,7 @@ namespace WebAPITest.Domain.Interfaces
     {
         Task<IEnumerable<Country>> GetCountriesAsync(); //Una de las tantas firmas del método!
 
-        Task<Country> GetCountryById(Guid id);
+        Task<Country> GetCountryByIdAsync(Guid id);
 
         Task<Country> CreateCountryAsync(Country country);
 

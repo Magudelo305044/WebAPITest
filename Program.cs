@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Connections;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using WebAPITest.DAL;
+using WebAPITest.Domain.Interfaces;
+using WebAPITest.Domain.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,9 @@ builder.Services.AddControllers();
 
 //Esta es la linea de code que necesito para configurar la conexión a la BD
 builder.Services.AddDbContext<DataBaseContex>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+//Contenedor de dependencias
+builder.Services.AddScoped<ICountryService, CountryService>(); 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

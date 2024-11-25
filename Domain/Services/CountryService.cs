@@ -43,7 +43,6 @@ namespace WebAPITest.Domain.Services
             {
 
                 throw new Exception(dbUpdateException.InnerException?.Message ?? dbUpdateException.Message);
-                //Prueba
             }
         }
 
