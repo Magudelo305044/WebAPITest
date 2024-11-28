@@ -10,7 +10,7 @@ namespace WebAPITest.Domain.Interfaces
 
         Task<Country> CreateCountryAsync(Country country);
 
-        Task<Country> EditCountyAsync(Country country);
+        Task<Country> EditCountryAsync(Country country);
 
         Task<Country> DeleteCountryAsync(Guid id);
 

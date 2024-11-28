@@ -18,5 +18,8 @@ namespace WebAPITest.DAL.Entities
         [Display(Name = "Id Pais")] //para identificar el nombre mas facil
         public Guid CountryId { get; set; }
 
+        public ICollection<State> States { get; set; }
+
+
     }
 }

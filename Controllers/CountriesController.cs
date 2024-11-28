@@ -62,7 +62,7 @@ namespace WebAPITest.Controllers
         {
             try
             {
-                var editedCountry = await _countryService.EditCountyAsync(country);
+                var editedCountry = await _countryService.EditCountryAsync(country);
                 if (editedCountry == null) return NotFound(); 
                 return Ok(editedCountry);
             }

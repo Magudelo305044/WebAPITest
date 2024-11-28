@@ -5,22 +5,22 @@ using WebAPITest.Domain.Interfaces;
 
 namespace WebAPITest.Domain.Services
 {
-    public class CountryService : ICountryService
+    public class StateService : IStateService
     {
         private readonly DataBaseContex _contex;
 
-        public CountryService(DataBaseContex contex)
+        public StateService(DataBaseContex contex)
         {
             _contex = contex;
         }
 
-        public async Task<IEnumerable<Country>> GetCountriesAsync()
+        public async Task<IEnumerable<State>> GetStatesAsync()
         {
             
             try
             {
-                var countries = await _contex.Countries.ToListAsync();
-                return countries;
+                var state = await _contex.States.ToListAsync();
+                return state;
             }
             catch (DbUpdateException dbUpdateException)
             {
@@ -28,16 +28,15 @@ namespace WebAPITest.Domain.Services
                 throw new Exception(dbUpdateException.InnerException?.Message ?? dbUpdateException.Message);
             }
         }
-
-        public async Task<Country> GetCountryByIdAsync(Guid id)
+        public async Task<State> GetStateByIdAsync(Guid id)
         {
             try
             {
-                var country = await _contex.Countries.FirstOrDefaultAsync(c => c.Id == id);
+                var state = await _contex.States.FirstOrDefaultAsync(c => c.Id == id);
                 //Otras dos formas de traerme un objeto desde la BD
-                var country1 = await _contex.Countries.FindAsync(id);
-                var country2 = await _contex.Countries.FirstAsync(c => c.Id == id);
-                return country;
+                var state1 = await _contex.States.FindAsync(id);
+                var state2 = await _contex.States.FirstAsync(c => c.Id == id);
+                return state;
             }
             catch (DbUpdateException dbUpdateException)
             {
@@ -46,15 +45,15 @@ namespace WebAPITest.Domain.Services
             }
         }
 
-        public async Task<Country> CreateCountryAsync(Country country)
+        public async Task<State> CreateStateAsync(State state)
         {
             try
             {
-                country.Id = Guid.NewGuid();
-                country.CreatedDate = DateTime.Now;
-                _contex.Countries.Add(country); //El método Add() me permite crear el objeto en el contexto de BD
+                state.Id = Guid.NewGuid();
+                state.CreatedDate = DateTime.Now;
+                _contex.States.Add(state); //El método Add() me permite crear el objeto en el contexto de BD
                 await _contex.SaveChangesAsync(); //Este método me permite guardar el país en mi tabla COUNTRY
-                return country;
+                return state;
             }
             catch (DbUpdateException dbUpdateException)
             {
@@ -63,14 +62,14 @@ namespace WebAPITest.Domain.Services
             }
         }
 
-        public async Task<Country> EditCountryAsync(Country country)
+        public async Task<State> EditStateAsync(State state)
         {
             try
             {
-                country.ModifiedDate = DateTime.Now;
-                _contex.Countries.Update(country); //Virtualizo mi objeto
+                state.ModifiedDate = DateTime.Now;
+                _contex.States.Update(state); //Virtualizo mi objeto
                 await _contex.SaveChangesAsync(); //Este método me permite guardar el país en mi tabla COUNTRY
-                return country;
+                return state;
             }
             catch (DbUpdateException dbUpdateException)
             {
@@ -79,18 +78,18 @@ namespace WebAPITest.Domain.Services
             }
         }
 
-        public async Task<Country> DeleteCountryAsync(Guid id)
+        public async Task<State> DeleteStateAsync(Guid id)
         {
             try
             {
-                var country = await GetCountryByIdAsync(id);
-                if (country == null)
+                var state = await GetStateByIdAsync(id);
+                if (state == null)
                 {
                     return null;
                 }
-                _contex.Countries.Remove(country);
+                _contex.States.Remove(state);
                 await _contex.SaveChangesAsync(); //Este método me permite guardar el país en mi tabla COUNTRY
-                return country;
+                return state;
             }
             catch (DbUpdateException dbUpdateException)
             {

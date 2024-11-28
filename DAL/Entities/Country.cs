@@ -9,7 +9,7 @@ namespace WebAPITest.DAL.Entities
         [Required(ErrorMessage = " El campo {0} es obligatorio")] //Campo obligatorio
         public string Name { get; set; }
 
-        [Display(Name = "Estados/Departamentos")] //para identificar el nombre mas facil
-        public ICollection<State>? States { get; set; }
+        public ICollection<Country> Countries { get; set; }
+        public List<State> States { get; internal set; }
     }
 }
