@@ -16,11 +16,15 @@ namespace WebAPITest.DAL
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Country>().HasIndex(c=> c.Name).IsUnique();//Aqui creo un indice del campo name para la tabla coutries
+
+            modelBuilder.Entity<State>().HasIndex("Name", "CountryId").IsUnique();//Haciendo un indice compuesto 
         }
 
         #region DbSets
 
         public DbSet<Country> Countries { get; set; }
+
+        public DbSet<State> States { get; set; }
 
         #endregion
     }

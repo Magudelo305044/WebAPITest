@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebAPITest.DAL;
 
@@ -11,9 +12,11 @@ using WebAPITest.DAL;
 namespace WebAPITest.Migrations
 {
     [DbContext(typeof(DataBaseContex))]
-    partial class DataBaseContexModelSnapshot : ModelSnapshot
+    [Migration("20241128125911_StateEntity")]
+    partial class StateEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
